@@ -5,12 +5,22 @@ body {
     margin: 0;
     font-family: 'Signika Negative', sans-serif;
     background-color: white;
+    height: 100%;
+    overflow: hidden; /* Prevent scrolling */
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden; /* Prevent scrolling */
 }
 
 #main {
     background-color: whitesmoke;
     margin: 0;
     margin-bottom: 90px;
+    height: 100vh; /* Use full viewport height */
+    display: flex;
+    flex-direction: column;
 }
 
 /* Bottom page selector */

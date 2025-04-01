@@ -47,4 +47,11 @@ document.addEventListener("DOMContentLoaded", function () {
             button.setAttribute('data-selected', !isSelected);
         });
     });
+
+    // Ensure full-screen mode on mobile
+    window.addEventListener("load", () => {
+        if ("scrollTo" in window) {
+            window.scrollTo(0, 0);
+        }
+    });
 });
