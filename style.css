@@ -1,33 +1,59 @@
 /* Color palette */
-
+#fff
+#a3b18a
+#3a5a40
 
 body {
     margin: 0;
     font-family: 'Signika Negative', sans-serif;
-    background-color: white;
+    background-color: #dda15e;
     height: 100%;
-    overflow: hidden; /* Prevent scrolling */
+    z-index: 0;
 }
 
 html, body {
     height: 100%;
-    overflow: hidden; /* Prevent scrolling */
+    margin: 0;
+    padding: 0;
 }
 
 #main {
-    background-color: whitesmoke;
+    background-color: #dda15e;
     margin: 0;
+    padding-top: 45px;
     margin-bottom: 90px;
-    height: 100vh; /* Use full viewport height */
+    height: 100%; /* Use full viewport height */
+    overflow-y: auto; /* Enable scrolling within the app */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
     display: flex;
     flex-direction: column;
+
+    font-weight: bold;
+
+    z-index: 10;
+}
+
+#header {
+    height: 50px;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding-bottom: 10px;
+
+    position: fixed;
+    display: flex;  
+    justify-content: center;
+    font-size: 15px;
+    font-weight: bold;
+
+    background-color: #fff;
 }
 
 /* Bottom page selector */
 
 .pageSelection {
-    background-color: white;
-    color: white;
+    background-color: #fff;
+    color: #fff;
     position: fixed;
     display: flex;
     justify-content: center;
@@ -37,39 +63,23 @@ html, body {
     right: 0;
     gap: 80px;
     padding: 10px 0;
-    height: 70px;
+    height: 35px;
 }
 
 .pageSelection button {
-    padding: 10px;
-    border-radius: 5cap;
     border: none;
+    background: none;
 }
 
 .pageSelection img {
-    width: 50px;;
+    width: 40px;;
+}
+
+.pageSelection button.active img {
+    border-top: 3px solid #588157;
 }
 
 /* Cusine styles */
-
-.cuisines {
-    margin-top: 30px;
-    margin-left: 10px;
-    margin-right: 10px;
-
-    border-radius: 5cap;
-    border: 2px solid black;
-    background-color: white;
-
-    padding: 10px;
-    min-width:60px;
-}
-
-.cuisines[data-selected="true"] {
-    background-color: black;
-    color: white;
-    border-color: white;
-}
 
 #cuisineToggleLabel {
     display: flex;
@@ -79,35 +89,22 @@ html, body {
     margin-left: 10px;
     margin-right: 10px;
     font-size: 20px;
+    background-color: #fff;
 
     padding: 10px;
-    border: 2px solid black;
-    border-radius: 5cap;
+    border-radius: 2cap;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 #cusisineOptions {
-    margin: 0 5px 0 5px;
+    margin: 10px 10px 0 10px;
+    background-color: #fff;
+    padding-bottom: 30px;
+    border-radius: 2cap;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 /* Dietary styles */
-
-.dietary {
-    margin-top: 30px;
-    margin-left: 10px;
-    margin-right: 10px;
-
-    border-radius: 5cap;
-    border: 2px solid black;
-    background-color: white;
-
-    padding: 10px;
-    min-width:60px;
-}
-.dietary[data-selected="true"] {
-    background-color: black;
-    color: white;
-    border-color: white;
-}
 
 #dietaryToggleLabel {
     display: flex;
@@ -119,33 +116,20 @@ html, body {
     font-size: 20px;
 
     padding: 10px;
-    border: 2px solid black;
-    border-radius: 5cap;
+    background-color: #fff;
+    border-radius: 2cap;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 #dietaryOptions {
-    margin: 0 5px 0 5px;
+    margin: 10px 10px 0 10px;
+    background-color: #fff;
+    padding-bottom: 30px;
+    border-radius: 2cap;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 /* Intolerance styles */
-
-.intolerances {
-    margin-top: 30px;
-    margin-left: 10px;
-    margin-right: 10px;
-
-    border-radius: 5cap;
-    border: 2px solid black;
-    background-color: white;
-
-    padding: 10px;
-    min-width:60px;
-}
-.intolerances[data-selected="true"] {
-    background-color: black;
-    color: white;
-    border-color: white;
-}
 
 #intolerancesToggleLabel {
     display: flex;
@@ -157,12 +141,95 @@ html, body {
     font-size: 20px;
 
     padding: 10px;
-    border: 2px solid black;
-    border-radius: 5cap;
+    background-color: #fff;
+    border-radius: 2cap;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 #intolerancesOptions {
-    margin: 0 5px 0 5px;
+    margin: 10px 10px 0 10px;
+    background-color: #fff;
+    padding-bottom: 30px;
+    border-radius: 2cap;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+/* Type styles */
+
+#typeToggleLabel {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 20px;
+
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 2cap;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+#typeOptions {
+    margin: 10px 10px 0 10px;
+    background-color: #fff;
+    padding-bottom: 30px;
+    border-radius: 2cap;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+/* Serving Size styles */
+#servingSizeToggleLabel {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 20px;
+
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 2cap;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+#servingSizeOptions {
+    margin: 10px 10px 0 10px;
+    background-color: #fff;
+    padding-bottom: 30px;
+    border-radius: 2cap;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+#servingSizeOptions h2 {
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+/*  selection styles */
+
+.optionSelect {
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+
+    border-radius: 2cap;
+    border: none;
+    background-color: #fff;
+    color: #000;
+
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+    padding: 10px;
+    min-width:60px;
+}
+
+.optionSelect[data-selected="true"] {
+    background-color: #588157;
+    color: white;
+    border-color: white;
 }
 
 /* Toggle Style */
@@ -171,33 +238,62 @@ html, body {
     display: none;
 }
 
-.toggle + .slider {
-    width: 50px;
-    height: 25px;
-    background-color: #ccc;
-    border-radius: 25px;
-    position: relative;
-    transition: background-color 0.3s;
-
+.chevron {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border: solid #588157;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+    transition: transform 0.3s ease-in-out;
     margin-left: auto;
+    margin-right: 10px;
 }
 
-.toggle + .slider::before {
-    content: '';
-    width: 20px;
-    height: 20px;
-    background-color: white;
-    border-radius: 50%;
-    position: absolute;
-    top: 2.5px;
-    left: 2.5px;
-    transition: transform 0.3s;
+.toggle:checked + .chevron {
+    transform: rotate(405deg); /* 360 + 45 degrees */
 }
 
-.toggle:checked + .slider {
-    background-color: black;
+.numberInput {
+    background-color: #588157;
+    color: #fff;
+    border-radius: 2cap;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 6px;
+    border: none;
+    margin-left: 15px;
+    width: 50px;
+    
+    font-size: 15px;
+    font-weight: bold;
 }
 
-.toggle:checked + .slider::before {
-    transform: translateX(25px);
+@keyframes fadeDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}
+
+.cuisine-Dropdown, .dietary-Dropdown, .intolerances-Dropdown {
+    animation: fadeDown 0.8s ease-out;
+}
+
+.cuisine-Dropdown.hidden, .dietary-Dropdown.hidden, .intolerances-Dropdown.hidden {
+    animation: fadeUp 0.8s ease-out;
 }
