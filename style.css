@@ -1,0 +1,193 @@
+/* Color palette */
+
+
+body {
+    margin: 0;
+    font-family: 'Signika Negative', sans-serif;
+    background-color: white;
+}
+
+#main {
+    background-color: whitesmoke;
+    margin: 0;
+    margin-bottom: 90px;
+}
+
+/* Bottom page selector */
+
+.pageSelection {
+    background-color: white;
+    color: white;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    z-index: 1000;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    gap: 80px;
+    padding: 10px 0;
+    height: 70px;
+}
+
+.pageSelection button {
+    padding: 10px;
+    border-radius: 5cap;
+    border: none;
+}
+
+.pageSelection img {
+    width: 50px;;
+}
+
+/* Cusine styles */
+
+.cuisines {
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+
+    border-radius: 5cap;
+    border: 2px solid black;
+    background-color: white;
+
+    padding: 10px;
+    min-width:60px;
+}
+
+.cuisines[data-selected="true"] {
+    background-color: black;
+    color: white;
+    border-color: white;
+}
+
+#cuisineToggleLabel {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 20px;
+
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 5cap;
+}
+
+#cusisineOptions {
+    margin: 0 5px 0 5px;
+}
+
+/* Dietary styles */
+
+.dietary {
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+
+    border-radius: 5cap;
+    border: 2px solid black;
+    background-color: white;
+
+    padding: 10px;
+    min-width:60px;
+}
+.dietary[data-selected="true"] {
+    background-color: black;
+    color: white;
+    border-color: white;
+}
+
+#dietaryToggleLabel {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 20px;
+
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 5cap;
+}
+
+#dietaryOptions {
+    margin: 0 5px 0 5px;
+}
+
+/* Intolerance styles */
+
+.intolerances {
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+
+    border-radius: 5cap;
+    border: 2px solid black;
+    background-color: white;
+
+    padding: 10px;
+    min-width:60px;
+}
+.intolerances[data-selected="true"] {
+    background-color: black;
+    color: white;
+    border-color: white;
+}
+
+#intolerancesToggleLabel {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 20px;
+
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 5cap;
+}
+
+#intolerancesOptions {
+    margin: 0 5px 0 5px;
+}
+
+/* Toggle Style */
+
+.toggle {
+    display: none;
+}
+
+.toggle + .slider {
+    width: 50px;
+    height: 25px;
+    background-color: #ccc;
+    border-radius: 25px;
+    position: relative;
+    transition: background-color 0.3s;
+
+    margin-left: auto;
+}
+
+.toggle + .slider::before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 2.5px;
+    left: 2.5px;
+    transition: transform 0.3s;
+}
+
+.toggle:checked + .slider {
+    background-color: black;
+}
+
+.toggle:checked + .slider::before {
+    transform: translateX(25px);
+}

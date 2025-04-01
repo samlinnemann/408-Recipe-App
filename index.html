@@ -2,8 +2,77 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Samuel Keon Linnemann</title>
+
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js"></script>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300..700&display=swap" rel="stylesheet">
     </head>
 
     <body>
-        <h1>Placeholder</h1>
+        <div id="main">
+            <div id="preferencePage" class="page">
+                <label id="cuisineToggleLabel" class="option">
+                    Cuisine Preference
+                    <input type="checkbox" id="cuisineToggle" class="toggle">
+                    <span class="slider"></span>
+                </label>
+                <div id="cusisineOptions" class="cuisine-Dropdown" style="display: none;">
+                    <button id="Asian" class="cuisines" data-selected="false">Asian</button>
+                    <button id="American" class="cuisines" data-selected="false">American</button>
+                    <button id="British" class="cuisines" data-selected="false">British</button>
+                    <button id="Chinese" class="cuisines" data-selected="false">Chinese</button>
+                    <button id="European" class="cuisines" data-selected="false">European</button>
+                    <button id="Indian" class="cuisines" data-selected="false">Indian</button>
+                    <button id="Italian" class="cuisines" data-selected="false">Italian</button>
+                    <button id="Japanese" class="cuisines" data-selected="false">Japanese</button>
+                    <button id="Latin American" class="cuisines" data-selected="false">Latin American</button>
+                    <button id="Mexican" class="cuisines" data-selected="false">Mexican</button>
+                    <button id="Southern" class="cuisines" data-selected="false">Southern</button>
+                    <button id="Spanish" class="cuisines" data-selected="false">Spanish</button>
+                    <button id="German" class="cuisines" data-selected="false">German</button>
+                    <button id="French" class="cuisines" data-selected="false">French</button>
+                    <button id="Greek" class="cuisines" data-selected="false">Greek</button>
+                </div>
+
+                <label id="dietaryToggleLabel" class="option">
+                    Dietary Preference
+                    <input type="checkbox" id="dietaryToggle" class="toggle">
+                    <span class="slider"></span>
+                </label>
+                <div id="dietaryOptions" class="dietary-Dropdown" style="display: none;">
+                    <button id="vegetarian" class="dietary" data-selected="false">Vegetarian</button>
+                    <button id="vegan" class="dietary" data-selected="false">Vegan</button>
+                    <button id="Pescetarian" class="dietary" data-selected="false">Pescetarian</button>
+                    <button id="Paleo" class="dietary" data-selected="false">Paleo</button>
+                </div>
+
+                <label id="intolerancesToggleLabel" class="option">
+                    Intolerances
+                    <input type="checkbox" id="intolerancesToggle" class="toggle">
+                    <span class="slider"></span>
+                </label>
+                <div id="intolerancesOptions" class="intolerances-Dropdown" style="display: none;">
+                    <button id="dairy" class="intolerances" data-selected="false">Dairy</button>
+                    <button id="peanut" class="intolerances" data-selected="false">Peanut</button>
+                    <button id="gluten" class="intolerances" data-selected="false">Gluten</button>
+                    <button id="wheat" class="intolerances" data-selected="false">Wheat</button>
+                    <button id="soy" class="intolerances" data-selected="false">Soy</button>
+                    <button id="egg" class="intolerances" data-selected="false">Egg</button>
+                </div>
+            </div>
+            
+
+            <div id="suggestionPage" class="page">
+
+            </div>
+        </div>
+
+        <div id="pageSelect" class="pageSelection">
+            <button id="preferencePageButton" class="pageSelectButton"><img src="assets/bitmap.png"/></button>
+            <button id="suggestionPageButton" class="pageSelectButton"><img src="assets/recipeIcon.png"></button>
+        </div>
     </body>
+</html>
