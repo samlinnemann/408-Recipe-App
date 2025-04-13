@@ -14,12 +14,21 @@ let queryParams = {
 
 async function fetchRecipes() {
   const apiKey = '82caed26afe2467ca4813a20339b7a80';
-  const url = `https://api.spoonacular.com/recipes/complexSearch?` +
-    `cuisine=${encodeURIComponent(queryParams.cuisine)}` +
-    `&diet=${encodeURIComponent(queryParams.diet)}` +
-    `&intolerances=${encodeURIComponent(queryParams.intolerances)}` +
-    `&addRecipeInformation=true&apiKey=${apiKey}`;
-    
+  const params = new URLSearchParams();
+
+  if (queryParams.cuisine) params.append('cuisine', queryParams.cuisine);
+  if (queryParams.diet) params.append('diet', queryParams.diet);
+  if (queryParams.intolerances) params.append('intolerances', queryParams.intolerances);
+  if (queryParams.maxCalories) params.append('maxCalories', queryParams.maxCalories);
+  if (queryParams.minCalories) params.append('minCalories', queryParams.minCalories);
+  if (queryParams.minServings) params.append('minServings', queryParams.minServings);
+  if (queryParams.maxServings) params.append('maxServings', queryParams.maxServings);
+
+  params.append('addRecipeInformation', 'true');
+  params.append('apiKey', apiKey);
+
+  const url = `https://api.spoonacular.com/recipes/complexSearch?${params.toString()}`;
+
   try {
     const response = await fetch(url);
     if (!response.ok) {
@@ -27,52 +36,52 @@ async function fetchRecipes() {
     }
     const data = await response.json();
     console.log('Recipes:', data);
-    
+
     const apiResultDiv = document.getElementById('suggestionPage');
-      apiResultDiv.innerHTML = '';
+    apiResultDiv.innerHTML = '';
 
-      for (const recipe of data.results) {
+    for (const recipe of data.results) {
 
-          // Create a card for each recipe
-          const card = document.createElement('div');
-          card.className = 'w3-card-4 w3-margin w3-padding w3-hover-shadow recipeCard';
+      // Create a card for each recipe
+      const card = document.createElement('div');
+      card.className = 'w3-card-4 w3-margin w3-padding w3-hover-shadow recipeCard';
 
-          const img = document.createElement('img');
-          img.src = recipe.image;
-          img.alt = recipe.title;
-          img.style.width = '100%';
+      const img = document.createElement('img');
+      img.src = recipe.image;
+      img.alt = recipe.title;
+      img.style.width = '100%';
 
-          const title = document.createElement('h2');
-          title.innerHTML = `<a href='recipe.html?id=${recipe.id}'>${recipe.title}</a>`; // Pass ID via URL
-          
-          const time = document.createElement('p');
-          time.innerText = `Ready in ${recipe.readyInMinutes} minutes`;
+      const title = document.createElement('h2');
+      title.innerHTML = `<a href='recipe.html?id=${recipe.id}'>${recipe.title}</a>`; // Pass ID via URL
+      
+      const time = document.createElement('p');
+      time.innerText = `Ready in ${recipe.readyInMinutes} minutes`;
 
-          const cuisine = document.createElement('p');
-          cuisine.className = 'w3-small recipeInfo'
-          cuisine.innerHTML = recipe.cuisines.map(c => `<span class="w3-tag w3-light-grey">${c}</span>`).join(' ');
+      const cuisine = document.createElement('p');
+      cuisine.className = 'w3-small recipeInfo'
+      cuisine.innerHTML = recipe.cuisines.map(c => `<span class="w3-tag w3-light-grey">${c}</span>`).join(' ');
 
-          const diets = document.createElement('p');
-          diets.className = 'w3-small recipeInfo'
-          diets.innerHTML = recipe.diets.map(d => `<span class="w3-tag w3-light-blue">${d}</span>`).join(' ');
+      const diets = document.createElement('p');
+      diets.className = 'w3-small recipeInfo'
+      diets.innerHTML = recipe.diets.map(d => `<span class="w3-tag w3-light-blue">${d}</span>`).join(' ');
 
-          const servings = document.createElement('p');
-          servings.className = 'w3-small recipeInfo'
-          servings.innerHTML = `Servings: ${recipe.servings}`;
+      const servings = document.createElement('p');
+      servings.className = 'w3-small recipeInfo'
+      servings.innerHTML = `Servings: ${recipe.servings}`;
 
-          card.appendChild(img);
-          card.appendChild(title);
-          card.appendChild(cuisine);
-          card.appendChild(diets);
-          card.appendChild(time);
-          card.appendChild(servings);
-          
+      card.appendChild(img);
+      card.appendChild(title);
+      card.appendChild(cuisine);
+      card.appendChild(diets);
+      card.appendChild(time);
+      card.appendChild(servings);
+      
 
-          // Append the card to the main container
-          apiResultDiv.appendChild(card);
-      }
+      // Append the card to the main container
+      apiResultDiv.appendChild(card);
+    }
   } catch (error) {
-      console.error('Error fetching data:', error);
+    console.error('Error fetching data:', error);
   }
 }
 
@@ -166,6 +175,49 @@ diets.forEach(diet => {
 });
 
 // ----------------- INTOLERANCES SECTION (MULTIPLE SELECTIONS) -----------------
+
+const intolerances = ["Dairy", "Egg", "Gluten", "Peanut", "Seafood", "Sesame", "Soy", "Tree Nut", "Wheat"];
+
+function updateIntoleranceUI() {
+  intolerances.forEach(intolerance => {
+    const btn = document.getElementById(intolerance.toLowerCase() + "Button");
+    if (btn) {
+      if (queryParams.intolerances.split(',').map(i => i.trim()).includes(intolerance)) {
+        btn.classList.add("active");
+        btn.setAttribute("data-selected", "true");
+      } else {
+        btn.classList.remove("active");
+        btn.setAttribute("data-selected", "false");
+      }
+    }
+  });
+}
+
+function handleIntoleranceButtonClick(intoleranceName) {
+  let intoleranceArr = queryParams.intolerances ? queryParams.intolerances.split(',').map(i => i.trim()) : [];
+
+  if (intoleranceArr.includes(intoleranceName)) {
+    intoleranceArr = intoleranceArr.filter(i => i !== intoleranceName);
+    console.log(`Removed ${intoleranceName} Intolerance`);
+  } else {
+    intoleranceArr.push(intoleranceName);
+    console.log(`Added ${intoleranceName} Intolerance`);
+  }
+  queryParams.intolerances = intoleranceArr.join(',');
+  updateIntoleranceUI();
+  console.log("Current queryParams:", queryParams);
+}
+
+// Attach event listeners for intolerance buttons
+intolerances.forEach(intolerance => {
+  const btnId = intolerance.toLowerCase() + "Button";
+  const btn = document.getElementById(btnId);
+  if (btn) {
+    btn.addEventListener("click", () => handleIntoleranceButtonClick(intolerance));
+  } else {
+    console.warn(`Intolerance button with ID "${btnId}" not found.`);
+  }
+});
 
 document.getElementById("minServingSize")?.addEventListener("input", function() {
   const value = this.value;
