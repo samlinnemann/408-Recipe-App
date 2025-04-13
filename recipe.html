@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Recipe Details</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+        <style>
+          body, h1, h2, h3, h4, h5, h6 {
+            font-family: 'Signika Negative', sans-serif;
+          }
+          </style>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300..700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <nav class="w3-bar w3-theme">
+            <a href="index.html" class="w3-bar-item w3-button">Home</a>
+        </nav>
+        <img id="recipe-image" src="" alt="Recipe Image" style="width: 100%; max-width: 600px; height: auto;">
+        <div id="recipe" class="w3-margin">
+            <h1 id="recipe-title"></h1>
+            <p id="recipe-time"></p>
+            <p id="recipe-servings"></p>
+            <h2>Ingredients</h2>
+            <ul id="ingredients-list"></ul>
+
+            <h2>Instructions</h2>
+            <div id="instructions"></div>
+        </div>
+        
+        <script src="recipe.js"></script>
+    </body>
+</html>

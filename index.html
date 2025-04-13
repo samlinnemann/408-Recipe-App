@@ -1,122 +1,112 @@
 <!DOCTYPE html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <title>Samuel Keon Linnemann</title>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Recipes</title>
 
-        <link rel="stylesheet" href="style.css">
-        <script src="script.js"></script>
+  <!-- Use defer so the DOM is ready for JS -->
+  <script src="spoon.js" defer></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="recipeList.css">
+</head>
+<body>
+  <header id="header">
+    <h1>MealMatch</h1>
+  </header>
+  <main id="main">
+    <section id="preferencePage" class="page">
+      <label id="cuisineToggleLabel" class="option">
+        Cuisine Preference
+        <input type="checkbox" id="cuisineToggle" class="toggle">
+        <span class="chevron"></span>
+      </label>
+      <div id="cuisineOptions" class="cuisine-Dropdown hidden">
+        <!-- Updated cuisine buttons without inline onclick -->
+        <button id="asianButton" class="cuisineOption" data-selected="false">Asian</button>
+        <button id="americanButton" class="cuisineOption" data-selected="false">American</button>
+        <button id="europeanButton" class="cuisineOption" data-selected="false">European</button>
+        <button id="italianButton" class="cuisineOption" data-selected="false">Italian</button>
+        <button id="mexicanButton" class="cuisineOption" data-selected="false">Mexican</button>
+        <button id="southernButton" class="cuisineOption" data-selected="false">Southern</button>
+      </div>
 
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300..700&display=swap" rel="stylesheet">
-    </head>
+      <label id="dietaryToggleLabel" class="option">
+        Dietary Preference
+        <input type="checkbox" id="dietaryToggle" class="toggle">
+        <span class="chevron"></span>
+      </label>
+      <div id="dietaryOptions" class="dietary-Dropdown hidden">
+        <button id="vegetarianButton" class="optionSelect" data-selected="false">Vegetarian</button>
+        <button id="veganButton" class="optionSelect" data-selected="false">Vegan</button>
+        <button id="pescetarianButton" class="optionSelect" data-selected="false">Pescetarian</button>
+        <button id="paleoButton" class="optionSelect" data-selected="false">Paleo</button>
+      </div>
 
-    <body>
-        <div id="main">
-            <div id="header">
-                <h1>MealMatch</h1>
-            </div>
-            <div id="preferencePage" class="page">
-                <label id="cuisineToggleLabel" class="option">
-                    Cuisine Preference
-                    <input type="checkbox" id="cuisineToggle" class="toggle">
-                    <span class="chevron"></span>
-                </label>
-                <div id="cusisineOptions" class="cuisine-Dropdown" style="display: none;">
-                    <button id="Asian" class="optionSelect" data-selected="false">Asian</button>
-                    <button id="American" class="optionSelect" data-selected="false">American</button>
-                    <button id="British" class="optionSelect" data-selected="false">British</button>
-                    <button id="Chinese" class="optionSelect" data-selected="false">Chinese</button>
-                    <button id="European" class="optionSelect" data-selected="false">European</button>
-                    <button id="Indian" class="optionSelect" data-selected="false">Indian</button>
-                    <button id="Italian" class="optionSelect" data-selected="false">Italian</button>
-                    <button id="Japanese" class="optionSelect" data-selected="false">Japanese</button>
-                    <button id="Latin American" class="optionSelect" data-selected="false">Latin American</button>
-                    <button id="Mexican" class="optionSelect" data-selected="false">Mexican</button>
-                    <button id="Southern" class="optionSelect" data-selected="false">Southern</button>
-                    <button id="Spanish" class="optionSelect" data-selected="false">Spanish</button>
-                    <button id="German" class="optionSelect" data-selected="false">German</button>
-                    <button id="French" class="optionSelect" data-selected="false">French</button>
-                    <button id="Greek" class="optionSelect" data-selected="false">Greek</button>
-                </div>
+      <label id="intolerancesToggleLabel" class="option">
+        Intolerances
+        <input type="checkbox" id="intolerancesToggle" class="toggle">
+        <span class="chevron"></span>
+      </label>
+      <div id="intolerancesOptions" class="intolerances-Dropdown hidden">
+        <button id="dairyButton" class="optionSelect" data-selected="false">Dairy</button>
+        <button id="peanutButton" class="optionSelect" data-selected="false">Peanut</button>
+        <button id="glutenButton" class="optionSelect" data-selected="false">Gluten</button>
+        <button id="wheatButton" class="optionSelect" data-selected="false">Wheat</button>
+        <button id="soyButton" class="optionSelect" data-selected="false">Soy</button>
+        <button id="eggButton" class="optionSelect" data-selected="false">Egg</button>
+      </div>
 
-                <label id="dietaryToggleLabel" class="option">
-                    Dietary Preference
-                    <input type="checkbox" id="dietaryToggle" class="toggle">
-                    <span class="chevron"></span>
-                </label>
-                <div id="dietaryOptions" class="dietary-Dropdown" style="display: none;">
-                    <button id="vegetarian" class="optionSelect" data-selected="false">Vegetarian</button>
-                    <button id="vegan" class="optionSelect" data-selected="false">Vegan</button>
-                    <button id="Pescetarian" class="optionSelect" data-selected="false">Pescetarian</button>
-                    <button id="Paleo" class="optionSelect" data-selected="false">Paleo</button>
-                </div>
+      <label id="typeToggleLabel" class="option">
+        Meal Type
+        <input type="checkbox" id="typeToggle" class="toggle">
+        <span class="chevron"></span>
+      </label>
+      <div id="typeOptions" class="type-Dropdown hidden">
+        <button id="breakfastButton" class="optionSelect" data-selected="false">Breakfast</button>
+        <button id="maincourseButton" class="optionSelect" data-selected="false">Main Course</button>
+        <button id="sidedishButton" class="optionSelect" data-selected="false">Side Dish</button>
+        <button id="dessertButton" class="optionSelect" data-selected="false">Dessert</button>
+        <button id="appetizerButton" class="optionSelect" data-selected="false">Appetizer</button>
+        <button id="soupButton" class="optionSelect" data-selected="false">Soup</button>
+      </div>
 
-                <label id="intolerancesToggleLabel" class="option">
-                    Intolerances
-                    <input type="checkbox" id="intolerancesToggle" class="toggle">
-                    <span class="chevron"></span>
-                </label>
-                <div id="intolerancesOptions" class="intolerances-Dropdown" style="display: none;">
-                    <button id="dairy" class="optionSelect" data-selected="false">Dairy</button>
-                    <button id="peanut" class="optionSelect" data-selected="false">Peanut</button>
-                    <button id="gluten" class="optionSelect" data-selected="false">Gluten</button>
-                    <button id="wheat" class="optionSelect" data-selected="false">Wheat</button>
-                    <button id="soy" class="optionSelect" data-selected="false">Soy</button>
-                    <button id="egg" class="optionSelect" data-selected="false">Egg</button>
-                </div>
-
-                <label id="typeToggleLabel" class="option">
-                    Meal Type
-                    <input type="checkbox" id="typeToggle" class="toggle">
-                    <span class="chevron"></span>
-                </label>
-                <div id="typeOptions" class="type-Dropdown" style="display: none;">
-                    <button id="breakfast" class="optionSelect" data-selected="false">Breakfast</button>
-                    <button id="mainCourse" class="optionSelect" data-selected="false">Main Course</button>
-                    <button id="sideDish" class="optionSelect" data-selected="false">Side Dish</button>
-                    <button id="dessert" class="optionSelect" data-selected="false">Dessert</button>
-                    <button id="appetizer" class="optionSelect" data-selected="false">Appetizer</button>
-                    <button id="fingerFood" class="optionSelect" data-selected="false">Finger Food</button>
-                    <button id="soup" class="optionSelect" data-selected="false">Soup</button>
-                </div>  
-            </div>
-
-            <label id="servingSizeToggleLabel" class="option">
-                Serving Size
-                <input type="checkbox" id="servingSizeToggle" class="toggle">
-                <span class="chevron"></span>
-            </label>
-            <div id="servingSizeOptions" class="servingSize-Dropdown" style="display: none;">
-                <h2>Minimum Serving Size</h2>
-                <input type="number" id="minServingSize" class="numberInput" data-selected="false" placeholder="Minimum" min="1" max="8">
-                <h2>Maximum Serving Size</h2>
-                <input type="number" id="maxServingSize" class="numberInput" placeholder="Maximum" max="8" min="1">
-            </div>
-
-            <label id="caloriesToggleLabel" class="option">
-                Serving Size
-                <input type="checkbox" id="caloriesToggle" class="toggle">
-                <span class="chevron"></span>
-            </label>
-            <div id="servingSizeOptions" class="servingSize-Dropdown" style="display: none;">
-                <h2>Minimum Serving Size</h2>
-                <input type="number" id="minCalories" class="numberInput" data-selected="false" placeholder="Minimum" min="50" max="800">
-                <h2>Maximum Serving Size</h2>
-                <input type="number" id="maxCalories" class="numberInput" placeholder="Maximum" max="800" min="50">
-            </div>
-            
-
-            <div id="suggestionPage" class="page">
-
-            </div>
+      <div id="servingSize">
+        <div class="servingSizeInput">
+          <h2>Min Serving Size</h2>
+          <input type="number" id="minServingSize" class="textInput" name="minServingSize" min="1" max="8" value="1">
         </div>
-
-        <div id="pageSelect" class="pageSelection">
-            <button id="preferencePageButton" class="pageSelectButton"><img src="assets/bitmap.png"/></button>
-            <button id="suggestionPageButton" class="pageSelectButton"><img src="assets/cookIcon.png"></button>
-            <button id="profilePageButton" class="pageSelectButton"><img src="assets/profileIcon.png"></button>
+        <div class="servingSizeInput">
+          <h2>Max Serving Size</h2>
+          <input type="number" id="maxServingSize" class="textInput" name="maxServingSize" min="1" max="8" value="8">
         </div>
-    </body>
+      </div>
+
+      <div id="calorieRange">
+        <div class="calorieInput">
+          <h2>Min Calories</h2>
+          <input type="number" id="minCalories" class="textInput" name="minCalories" min="50" max="800" value="50">
+        </div>
+        <div class="calorieInput">
+          <h2>Max Calories</h2>
+          <input type="number" id="maxCalories" class="textInput" name="maxCalories" min="50" max="800" value="800">
+        </div>
+      </div>
+
+      <button id="submitButton" class="submit">Submit</button>
+    </section>
+
+    <section id="suggestionPage" class="page">
+      <!-- Fetched recipes will appear here -->
+    </section>
+  </main>
+
+  <nav id="pageSelect" class="pageSelection">
+    <button id="preferencePageButton" class="pageSelectButton"><img src="assets/bitmap.png" alt="Preferences"/></button>
+    <button id="suggestionPageButton" class="pageSelectButton"><img src="assets/cookIcon.png" alt="Suggestions"/></button>
+  </nav>
+</body>
 </html>

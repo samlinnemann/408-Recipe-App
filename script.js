@@ -1,84 +1,60 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const preferencePage = document.getElementById("preferencePage");
-    const suggestionPage = document.getElementById("suggestionPage");
-    const preferenceButton = document.getElementById("preferencePageButton");
-    const suggestionButton = document.getElementById("suggestionPageButton");
+async function fetchData() {
+    try {
+        const apikey = "&apiKey=82caed26afe2467ca4813a20339b7a80";
+        const response = await fetch(`https://api.spoonacular.com/recipes/complexSearch?cuisine=American&diet=glutenfree&intolerances=gluten&instructionsRequired=true&number=5${apikey}`);
+        const data = await response.json();
 
-    function showPage(page) {
-        if (page === "preference") {
-            preferencePage.style.display = "block";
-            suggestionPage.style.display = "none";
-        } else if (page === "suggestion") {
-            preferencePage.style.display = "none";
-            suggestionPage.style.display = "block";
+        const apiResultDiv = document.getElementById('api-result');
+        apiResultDiv.innerHTML = '';
+
+        for (const recipe of data.results) {
+            const info = await fetch(`https://api.spoonacular.com/recipes/${recipe.id}/information?includeNutrition=false${apikey}`);
+            const recipeDetails = await info.json();
+            console.log(recipeDetails);
+
+            // Create a card for each recipe
+            const card = document.createElement('div');
+            card.className = 'w3-card-4 w3-margin w3-padding w3-hover-shadow';
+
+            const img = document.createElement('img');
+            img.src = recipeDetails.image;
+            img.alt = recipeDetails.title;
+            img.style.width = '100%';
+
+            const title = document.createElement('h2');
+            title.innerHTML = `<a href='recipe.html?id=${recipeDetails.id}'>${recipeDetails.title}</a>`; // Pass ID via URL
+            
+            const time = document.createElement('p');
+            time.innerText = `Ready in ${recipeDetails.readyInMinutes} minutes`;
+
+            const cuisine = document.createElement('p');
+            cuisine.className = 'w3-small recipeInfo'
+            cuisine.innerHTML = recipeDetails.cuisines.map(c => `<span class="w3-tag w3-light-grey">${c}</span>`).join(' ');
+
+            const diets = document.createElement('p');
+            diets.className = 'w3-small recipeInfo'
+            diets.innerHTML = recipeDetails.diets.map(d => `<span class="w3-tag w3-light-blue">${d}</span>`).join(' ');
+
+            const servings = document.createElement('p');
+            servings.className = 'w3-small recipeInfo'
+            servings.innerHTML = `Servings: ${recipeDetails.servings}`;
+
+            card.appendChild(img);
+            card.appendChild(title);
+            card.appendChild(cuisine);
+            card.appendChild(diets);
+            card.appendChild(time);
+            card.appendChild(servings);
+            
+
+            // Append the card to the main container
+            apiResultDiv.appendChild(card);
         }
+    } catch (error) {
+        console.error('Error fetching data:', error);
     }
+}
 
-    const pageButtons = document.querySelectorAll(".pageSelectButton");
-    const pageSelection = document.querySelector(".pageSelection");
-
-    function setActivePageButton(activeButton) {
-        pageButtons.forEach(button => button.classList.remove("active"));
-        activeButton.classList.add("active");
-
-        // Highlight the pageSelection container
-        pageSelection.classList.add("active");
-    }
-
-    preferenceButton.addEventListener("click", function () {
-        showPage("preference");
-        setActivePageButton(preferenceButton);
-    });
-
-    suggestionButton.addEventListener("click", function () {
-        showPage("suggestion");
-        setActivePageButton(suggestionButton);
-    });
-
-    // Set initial page view
-    showPage("preference");
-
-    // Set initial active button and highlight
-    setActivePageButton(preferenceButton);
-
-    function setupToggle(toggleId, optionsId) {
-        const toggle = document.getElementById(toggleId);
-        const options = document.getElementById(optionsId);
-
-        toggle.addEventListener("change", function () {
-            if (toggle.checked) {
-                options.classList.remove("hidden");
-                options.style.display = "block";
-                options.style.animation = "fadeDown 0.5s ease-out"; // Apply fade-down animation
-            } else {
-                options.style.animation = "fadeUp 0.5s ease-out"; // Apply fade-up animation
-                setTimeout(() => {
-                    options.style.display = "none";
-                    options.classList.add("hidden");
-                }, 300); // Wait for the animation to complete
-            }
-        });
-
-        // Initialize options visibility
-        if (toggle.checked) {
-            options.style.display = "block";
-        } else {
-            options.style.display = "none";
-            options.classList.add("hidden");
-        }
-    }
-
-    setupToggle("cuisineToggle", "cusisineOptions");
-    setupToggle("dietaryToggle", "dietaryOptions");
-    setupToggle("intolerancesToggle", "intolerancesOptions");
-    setupToggle("typeToggle", "typeOptions");
-    setupToggle("servingSizeToggle", "servingSizeOptions");
-
-    document.querySelectorAll('.optionSelect').forEach(button => {
-        button.addEventListener('click', () => {
-            const isSelected = button.getAttribute('data-selected') === 'true';
-            button.setAttribute('data-selected', !isSelected);
-        });
-    });
-});
-
+window.onload = function() {
+    fetchData();
+}

@@ -3,9 +3,21 @@
 #a3b18a
 #3a5a40
 
+/* Hide arrows for all browsers */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* For Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
 body {
     margin: 0;
-    font-family: 'Signika Negative', sans-serif;
+    font-family: 'Signika Negative', sans-serif !important; 
     background-color: #dda15e;
     height: 100%;
     z-index: 0;
@@ -20,8 +32,8 @@ html, body {
 #main {
     background-color: #dda15e;
     margin: 0;
-    padding-top: 45px;
-    margin-bottom: 90px;
+    padding-top: 60px;
+    padding-bottom: 100px;
     height: 100%; /* Use full viewport height */
     overflow-y: auto; /* Enable scrolling within the app */
     -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
@@ -38,7 +50,10 @@ html, body {
     top: 0;
     left: 0;
     right: 0;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
+
+    border-bottom-left-radius: 2cap;
+    border-bottom-right-radius: 2cap;
 
     position: fixed;
     display: flex;  
@@ -47,6 +62,8 @@ html, body {
     font-weight: bold;
 
     background-color: #fff;
+
+    z-index: 1000;
 }
 
 /* Bottom page selector */
@@ -64,6 +81,9 @@ html, body {
     gap: 80px;
     padding: 10px 0;
     height: 35px;
+
+    border-top-right-radius: 2cap;
+    border-top-left-radius: 2cap;
 }
 
 .pageSelection button {
@@ -96,7 +116,7 @@ html, body {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-#cusisineOptions {
+#cuisineOptions {
     margin: 10px 10px 0 10px;
     background-color: #fff;
     padding-bottom: 30px;
@@ -180,35 +200,109 @@ html, body {
 }
 
 /* Serving Size styles */
-#servingSizeToggleLabel {
+#servingSize {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 14px;
+    padding-left: 10px;
+    background-color: #fff;
+    border-radius: 2cap;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.servingSizeInput {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+.servingSizeInput h2 {
+    margin: 0; 
+    flex: 1;
+}
+
+.servingSizeInput input {
+    flex: 0;
+    margin-left: 10px;
+}
+
+/* Calorie Count styles */
+#calorieRange {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 14px;
+    padding-left: 10px;
+    background-color: #fff;
+    border-radius: 2cap;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.calorieInput {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+.calorieInput h2 {
+    margin: 0; 
+    flex: 1;
+}
+
+.calorieInput input {
+    flex: 0;
+    margin-left: 10px;
+}
+
+/* Calorie styles */
+#calorieCount {
+    display: flex;
+    flex-direction: column;
     cursor: pointer;
     margin-top: 30px;
     margin-left: 10px;
     margin-right: 10px;
-    font-size: 20px;
+    font-size: 15px;
 
-    padding: 10px;
+    padding-left: 10px;
     background-color: #fff;
     border-radius: 2cap;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-#servingSizeOptions {
-    margin: 10px 10px 0 10px;
-    background-color: #fff;
-    padding-bottom: 30px;
-    border-radius: 2cap;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-}
-
-#servingSizeOptions h2 {
-    font-size: 20px;
-    margin-left: 10px;
+#calorieInput {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /*  selection styles */
+
+.submit {
+    background-color: #FFF;
+    color: #000;
+    border-radius: 2cap;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 10px;
+    border: none;
+    display: block;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 60%;
+    text-align: center;
+    
+    
+    font-size: 15px;
+    font-weight: bold;
+}
 
 .optionSelect {
     margin-top: 30px;
@@ -230,6 +324,33 @@ html, body {
     background-color: #588157;
     color: white;
     border-color: white;
+}
+
+.cuisineOption {
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+
+    border-radius: 2cap;
+    border: none;
+    background-color: #fff;
+    color: #000;
+
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+    padding: 10px;
+    min-width:60px;
+}
+
+.cuisineOption[data-selected="true"] {
+    background-color: #588157;
+    color: white;
+    border-color: white;
+}
+
+.cuisineOption[data-selected="false"] {
+    background-color: #fff;
+    color: #000;
 }
 
 /* Toggle Style */
@@ -254,18 +375,23 @@ html, body {
     transform: rotate(405deg); /* 360 + 45 degrees */
 }
 
-.numberInput {
+.textInput {
     background-color: #588157;
     color: #fff;
     border-radius: 2cap;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     padding: 6px;
     border: none;
-    margin-left: 15px;
-    width: 50px;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: 10px;
     
     font-size: 15px;
     font-weight: bold;
+    text-align: center;
+}
+.recipeCard {
+    background-color: #fff;
 }
 
 @keyframes fadeDown {
