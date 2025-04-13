@@ -15,6 +15,10 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
+#suggestionPage {
+    padding-top: 60px;
+}
+
 body {
     margin: 0;
     font-family: 'Signika Negative', sans-serif !important; 
@@ -27,6 +31,7 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
+    overflow: hidden; /* Prevent scrolling outside the app */
 }
 
 #main {
@@ -34,7 +39,7 @@ html, body {
     margin: 0;
     padding-top: 60px;
     padding-bottom: 100px;
-    height: 100%; /* Use full viewport height */
+    height: 100vh; /* Full viewport height */
     overflow-y: auto; /* Enable scrolling within the app */
     -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
     display: flex;
