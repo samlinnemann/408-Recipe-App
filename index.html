@@ -12,6 +12,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300..700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="recipeList.css">
+  <script>
+    // Dynamically set the --vh variable to account for mobile browser UI
+    window.addEventListener('resize', () => {
+      document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
+    });
+    // Set it initially
+    document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
+  </script>
 </head>
 <body>
   <header id="header">
