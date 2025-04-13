@@ -34,6 +34,18 @@ html, body {
     padding: 0;
 }
 
+/* Prevent body from scrolling */
+body.no-scroll {
+  overflow: hidden;
+}
+
+/* Allow scrolling only within the main element */
+main {
+  overflow-y: auto;
+  height: 100vh;
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
+}
+
 .page {
     overflow-y: auto;
     max-height: 100vh;
